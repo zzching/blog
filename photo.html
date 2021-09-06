@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    html{
+        scroll-behavior: smooth;
+    }
+    body::-webkit-scrollbar {
+        display: none;
+    }
+
+    body {
+        -ms-overflow-style: none;
+    }
+
+    #box {
+        background: url(https://images.pexels.com/photos/262713/pexels-photo-262713.jpeg?cs=srgb&dl=pexels-pixabay-262713.jpg&fm=jpg ) no-repeat;
+        max-width:100%;
+        height: 70vmin;
+        background-position: center bottom;
+        background-size: cover;
+    }
+    .contanier {
+        width:100%;
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .box1 {
+        width: 25vw;
+        height: 25vw;
+        margin-top: 5vmin;
+        margin-left: 2%;
+        margin-right: 2%;
+        margin-bottom: 5vmin;
+        position: relative; /**因為是被覆蓋的，  需要用到 相對定位**/
+    }
+
+        .box1 img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+    .mask {
+        width: 100%;
+        height: 100%;
+        background: rgba(101, 101, 101, 0.6);
+        color: #ffffff;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transform: scaleY(-1);
+        transition: all 0.75s;
+    }
+
+        .mask p.ptitle {
+            font-size: 3.5vmin;
+            text-align: center;
+            padding-top: 25%;
+        }
+        .mask p.pdata {
+            font-size: 2.8vmin;
+            text-align: center;
+            padding-top: 0px;
+        }
+
+    .box1:hover .mask {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+
+    a#de {
+        color: gray;
+        font-size: 3vmin;
+    }
+
+    a#title {
+        color: black;
+        font-size: 3vmin;
+    }
+    a.link {
+        color: gray;
+        font-size: 3vmin;
+        text-decoration:none;
+    }
+    a.link:hover {
+        color:black ;
+        font-size: 3vmin;
+        text-decoration: none;
+    }
+
+    p#food, p#view {
+        width: 18vmax;
+        font-family: 'Baron Neue';
+        font-size: 8.5vmin;
+        color: black;
+        text-align: left;
+        margin-left: 35px;
+        padding-top: 20px;
+        padding-left: 15px;
+        border-bottom: solid 0.1vmin black;
+    }
+    p.footer{
+        text-align:center;
+    }
+
+    .flex {
+        display: flex;
+        height: 100%;
+        width: 75vmin;
+        padding: 10vmin;
+    }
+
+    .item {
+        flex: 1;
+        background-color: rgba(255,255,255,0.7);
+        margin-left: 5vmin;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        padding: 7vmin;
+        font-size: 6vmin;
+    }
+
+    .back-to-top {
+        font-weight: 600;
+        font-size: 30px;
+        display: none;
+        /* 默認是隱藏的，這樣在第一屏才不顯示 */
+        position: fixed;
+        /* 位置是固定的 */
+        bottom: 20px;
+        /* 顯示在頁面底部 */
+        right: 30px;
+        /* 顯示在頁面的右邊 */
+        z-index: 99;
+        /* 確保不被其他功能覆蓋 */
+        border: 0px solid #000;
+        /* 顯示邊框 */
+        outline: none;
+        /* 不顯示外框 */
+        background: rgba(194, 95, 154,0.5);
+        transition: background 0.2s ease;
+        /* 設置背景背景顏色 */
+        color: rgba(0, 0, 0, 0.48);
+        /* 設置文本顏色 */
+        cursor: pointer;
+        width: 70px;
+        height: 70px;
+        /* 鼠標移到按鈕上顯示手型 */
+        padding: 10px 20px 15px 20px;
+        /* 增加一些內邊距 */
+        border-radius: 50%;
+        /* 增加圓角 */
+    }
+
+        .back-to-top:hover {
+            background-color: rgb(220, 220, 220);
+            /* 鼠標移上去時，反轉顏色 */
+            color: #000;
+        }
+</style>
+  <title>PhotoBlog</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+      $(function () {
+          var $win = $(window);
+          var $backToTop = $('.js-back-to-top');
+          $win.scroll(function () {
+              if ($win.scrollTop() > 100) {
+                  $backToTop.show();
+              } else {
+                  $backToTop.hide();
+              }
+          });
+          $backToTop.click(function () {
+              $('html, body').animate({
+                  scrollTop: 0
+              }, 200);
+          });
+      });
+  </script>
+</head>
+<body>
+
+<div class="pos-f-t">
+
+  <nav class="navbar navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+              <a class="navbar-brand" style="color:indianred">Daily♥</a>
+  </nav>
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-light p-4">
+      <ul class="nav navbar-nav">
+        <li class="nav-link disable"><a id="title">筆記分類</a></li>
+        <li class="nav-link"><a href="#food"class="link">美食</a></li>
+        <li class="nav-link"><a href="#view"class="link"">風景</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div id="box" >
+    <div class="flex">
+  <div class="item">Photos of life<hr>写真記録</div>
+    </div>
+</div>
+    <p id="food">美食</p>
+<div class="contanier">
+
+    <div class="box1">
+       <img src="https://i.ibb.co/JK69hhh/123.jpg">
+       <div class="mask">
+           <p class="ptitle">平行時空小茶室</p>
+           <p class="pdata">花蓮縣花蓮市建國路3號</p>
+
+       </div>
+    </div>
+        <div class="box1">
+       <img src="https://i.ibb.co/TcPQtcL/456.jpg">
+       <div class="mask">
+               <p class="ptitle">財記臭豆腐</p>
+           <p class="pdata">宜蘭縣羅東鎮公正路110號</p>
+       </div>
+    </div>
+        <div class="box1">
+       <img src="https://i.ibb.co/ZLPW2tx/789.jpg">
+              <div class="mask">
+               <p class="ptitle">阿貝廚坊</p>
+           <p class="pdata">宜蘭縣羅東鎮公正路110號</p>
+       </div>
+            </div>
+</div>
+<div class="contanier">
+    <div class="box1">
+       <img src="https://i.ibb.co/frcTmjc/12.jpg">
+       <div class="mask">
+               <p class="ptitle">億光年</p>
+                      <p class="pdata">花蓮縣吉安鄉莊敬路303號</p>
+       </div>
+    </div>
+        <div class="box1">
+       <img src="https://i.ibb.co/Fxr4vyH/101112.jpg">
+       <div class="mask">
+               <p class="ptitle">田村壽司</p>
+               <p class="pdata">花蓮市德安一街225號</p>
+       </div>
+    </div>
+        <div class="box1">
+       <img src="https://i.ibb.co/892Tdcn/16.jpg">
+       <div class="mask">
+               <p class="ptitle">霍爾廚房</p>
+               <p class="pdata">花蓮縣吉安鄉自立路二段50號</p>
+       </div>
+       </div>
+    </div>
+<p id="view">風景</p>
+<div class="contanier">
+     <div class="box1">
+       <img src="https://i.ibb.co/YN2t0ZC/14.jpg">
+       <div class="mask">
+               <p class="ptitle">海水浴場</p>
+       </div>
+    </div>
+        <div class="box1">
+       <img src="https://i.ibb.co/sVbzXF5/15.jpg">
+       <div class="mask">
+               <p class="ptitle">鯉魚潭</p>
+       </div>
+    </div>
+        <div class="box1">
+       <img src="https://i.ibb.co/bWXL7Gm/13.jpg">
+       <div class="mask">
+               <p class="ptitle">🌸</p>
+       </div>
+    </div>
+</div>
+      <button class="js-back-to-top back-to-top" title="回到頂端">&#129153;</button>
+    <footer><p class="footer">© 2021 Ching</p></footer>
+</body>
+</html>
+
+
+
